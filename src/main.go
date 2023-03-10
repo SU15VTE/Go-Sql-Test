@@ -31,10 +31,29 @@ func main() {
 	} else {
 		fmt.Println("Init database success")
 	}
+	GetRows(2)
+	GetAll(0)
 
-	Get, err := selectall(1)
+	updateRow(6, "mio", 16)
+	deleteRow(5)
+	GetAll(0)
+}
+
+func GetRows(id int) {
+	Get, err := selectRow(2)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	fmt.Printf("id: %d, name: %s, age: %d", Get.id, Get.name, Get.age)
+	fmt.Printf("id: %d, name: %s, age: %d\n", Get.id, Get.name, Get.age)
+}
+func GetAll(id int) {
+	GetAll, err := selecetAll(0)
+	if err != nil {
+		log.Fatalln(err.Error())
+	}
+	fmt.Println(GetAll)
+	fmt.Printf("%s     %8s     %s\n", idstr, namestr, agestr)
+	for _, users := range GetAll {
+		fmt.Printf("%d     %10s     %3d\n", users.id, users.name, users.age)
+	}
 }
