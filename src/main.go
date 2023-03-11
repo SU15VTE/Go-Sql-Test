@@ -30,10 +30,6 @@ func main() {
 	} else {
 		fmt.Println("Init database success")
 	}
-	prepareGet(2)
-	prepareGetAll(0)
-	prepareInsert("sakura", 18)
-	prepareGetAll(0)
-	prepareDelete(7)
-	prepareGetAll(0)
+	transaction("SU15VTE", 1, "123456")
+	GetRows(1)
 }
