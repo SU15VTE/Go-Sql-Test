@@ -1,11 +1,11 @@
 package main
 
 type User struct {
-	id   int
-	age  int
-	name string
+	id       int
+	password string
+	username string
 }
 
 var idstr string = "id"
-var agestr string = "age"
-var namestr string = "name"
+var passwordstr string = "password"
+var usernamestr string = "username"

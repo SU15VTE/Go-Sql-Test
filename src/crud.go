@@ -9,7 +9,7 @@ import (
 func selectRow(id int) (u User, err error) {
 	u = User{}
 	selectStr := "SELECT * FROM user WHERE id =?"
-	err = db.QueryRow(selectStr, id).Scan(&u.id, &u.name, &u.age)
+	err = db.QueryRow(selectStr, id).Scan(&u.id, &u.username, &u.password)
 	if err != nil {
 		log.Fatalln(err.Error())
 	}
@@ -23,7 +23,7 @@ func selecetAll(id int) (users []User, err error) {
 
 	for rows.Next() {
 		u := User{}
-		err = rows.Scan(&u.id, &u.name, &u.age)
+		err = rows.Scan(&u.id, &u.username, &u.password)
 		if err != nil {
 			log.Fatalln(err.Error())
 		}
@@ -32,9 +32,9 @@ func selecetAll(id int) (users []User, err error) {
 	return
 }
 
-func insertRow(name string, age int) (err error) {
-	insertStr := "INSERT INTO user (name, age) VALUES (?,?)"
-	ret, err := db.Exec(insertStr, name, age)
+func insertRow(username string, password string) (err error) {
+	insertStr := "INSERT INTO user (username, password) VALUES (?,?)"
+	ret, err := db.Exec(insertStr, username, password)
 	if err != nil {
 		log.Fatalln(err.Error())
 		return
@@ -61,9 +61,9 @@ func deleteRow(id int) (err error) {
 	return
 }
 
-func updateRow(id int, name string, age int) (err error) {
-	sqlStr := "UPDATE user SET name =?, age =? WHERE id =?"
-	ret, err := db.Exec(sqlStr, name, age, id)
+func updateRow(id int, username string, password string) (err error) {
+	sqlStr := "UPDATE user SET username =?, password =? WHERE id =?"
+	ret, err := db.Exec(sqlStr, username, password, id)
 	if err != nil {
 		log.Fatalln(err.Error())
 	}
